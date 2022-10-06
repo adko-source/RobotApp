@@ -31,189 +31,56 @@ namespace RobotApp.Library
             int[,] gridSize = new int[rows, cols];
             return gridSize;
         }
-
-        public static List<string> GetStartPositions(string filePath)
+        public static List<int[]> GetObstacles(string filePath)
         {
             // Create list and add each x line to it to get all starting positions
             string[] fileContent = File.ReadAllLines(filePath);
-            List<string> parsedLines = new List<string>();
-            List<string> startingPositions = new List<string>();
-           
-
-            foreach (string line in fileContent)
-            {
-                string formattedLine = line.Trim().ToUpper();
-                // Pull out only the lines we want from the file 
-                // example: every 3rd line in instruction file should contain starting pos.
-                if (formattedLine.Contains("GRID") == false &&
-                    formattedLine.Contains("OBSTACLE") == false &&
-                    formattedLine.Length > 0)
-                {
-                    parsedLines.Add(formattedLine);
-                };
-            };
-
-            for (int i = 0; i < parsedLines.Count; i += 3)
-            {
-                if (i == 0)
-                {
-                    startingPositions.Add(
-                        $"{parsedLines[i].Trim().Split()[0]} {parsedLines[i].Trim().Split()[1]}"
-                        );
-                }
-                else
-                {
-                    startingPositions.Add(
-                        $"{parsedLines[i].Trim().Split()[0]} {parsedLines[i].Trim().Split()[1]}"
-                        );
-                };
-            };
-
-            return startingPositions;
-        }
-
-        public static List<string> GetEndPositions(string filePath)
-        {
-            // Create list and add each x line to it to get all starting positions
-            string[] fileContent = File.ReadAllLines(filePath);
-            List<string> parsedLines = new List<string>();
-            List<string> endPositions = new List<string>();
+            List<int[]> obstacles = new List<int[]>();
 
             foreach (string line in fileContent)
             {
                 var formattedLine = line.Trim().ToUpper();
-                if (formattedLine.Contains("GRID") == false &&
-                    formattedLine.Contains("OBSTACLE") == false &&
-                    formattedLine.Trim().Length > 0)
+                if (formattedLine.Contains("OBSTACLE"))
                 {
-                    parsedLines.Add(line);
+                    var obstacleRow = int.Parse(formattedLine.Split(" ")[1]);
+                    var obstacleCol = int.Parse(formattedLine.Split(" ")[2]);
+                    obstacles.Add(new int[2] { obstacleRow, obstacleCol });
                 };
-            };
-
-            for (int i = 2; i < parsedLines.Count; i += 3)
-            {
-                endPositions.Add(
-                        $"{parsedLines[i].Split()[0]} {parsedLines[i].Split()[1]}"
-                        );
-            };
-
-            return endPositions;
-        }
-
-        public static List<string> GetStartDirections(string filePath)
-        {
-            // Create list and add each x line to it to get all starting positions
-            string[] fileContent = File.ReadAllLines(filePath);
-            List<string> parsedLines = new List<string>();
-            List<string> startingDirections = new List<string>();
-
-            foreach (string line in fileContent)
-            {
-                var formattedLine = line.Trim().ToUpper();
-                if (formattedLine.Contains("GRID") == false &&
-                    formattedLine.Contains("OBSTACLE") == false &&
-                    formattedLine.Length > 0)
-                {
-                    parsedLines.Add(line);
-                };
-            };
-
-            for (int i = 0; i < parsedLines.Count; i += 3)
-            {
-                if (i == 0)
-                {
-                    startingDirections.Add(parsedLines[i].Trim().Split()[2]);
-                }
-                else
-                {
-                    startingDirections.Add(parsedLines[i].Trim().Split()[2]);
-                };
-            };
-
-            return startingDirections;
-        }
-
-        public static List<string> GetEndDirections(string filePath)
-        {
-            // Create list and add each x line to it to get all starting positions
-            string[] fileContent = File.ReadAllLines(filePath);
-            List<string> parsedLines = new List<string>();
-            List<string> endDirections = new List<string>();
-
-            foreach (string line in fileContent)
-            {
-                var formattedLine = line.Trim().ToUpper();
-                if (formattedLine.Contains("GRID") == false &&
-                    formattedLine.Contains("OBSTACLE") == false &&
-                    formattedLine.Length > 0)
-                {
-                    parsedLines.Add(line);
-                };
-            };
-
-            for (int i = 2; i < parsedLines.Count; i += 3)
-            {
-                if (i == 0)
-                {
-                    endDirections.Add(parsedLines[i].Trim().Split()[2]);
-                }
-                else
-                {
-                    endDirections.Add(parsedLines[i].Trim().Split()[2]);
-                };
-            };
-
-            return endDirections;
-        }
-
-        public static List<string> GetCommands(string filePath)
-        {
-            // Create list and add each x line to it to get all starting positions
-            string[] fileContent = File.ReadAllLines(filePath);
-            List<string> parsedLines = new List<string>();
-            List<string> commands = new List<string>();
-
-            foreach (string line in fileContent)
-            {
-                var formattedLine = line.Trim().ToUpper();
-                if (formattedLine.Contains("GRID") == false &&
-                    formattedLine.Contains("OBSTACLE") == false &&
-                    formattedLine.Trim().Length > 0)
-                {
-                    parsedLines.Add(line);
-                };
-            };
-
-            for (int i = 1; i < parsedLines.Count; i += 3)
-            {
-                commands.Add(parsedLines[i].Trim());
-            };
-
-            return commands;
-        }
-        public static List<string> GetObstacles(string filePath)
-        {
-            // Create list and add each x line to it to get all starting positions
-            string[] fileContent = File.ReadAllLines(filePath);
-            List<string> parsedLines = new List<string>();
-            List<string> obstacles = new List<string>();
-
-            foreach (string line in fileContent)
-            {
-                // Pull out only the lines we want from the file 
-                // example: every 3rd line in instruction file should contain starting pos.
-                if (line.Trim().ToUpper().Contains("OBSTACLE"))
-                {
-                    parsedLines.Add(line);
-                };
-            };
-
-            for (int i = 1; i < parsedLines.Count; i += 3)
-            {
-                obstacles.Add(parsedLines[i].Trim().Split()[i]);
-            };
+            } 
 
             return obstacles;
+        }
+        public static List<Journey> GetJourneys(string filePath)
+        {
+            // Create list and add each x line to it to get all starting positions
+            string[] fileContent = File.ReadAllLines(filePath);
+            List<string> parsedLines = new List<string>();
+            List<Journey> journeys = new List<Journey>();
+
+            foreach (string line in fileContent)
+            {
+                var formattedLine = line.Trim().ToUpper();
+                if (formattedLine.Contains("OBSTACLE") == false &&
+                    formattedLine.Contains("GRID") == false &&
+                    formattedLine.Length > 0
+                    )
+                {
+                    parsedLines.Add(line);
+                };
+            };
+
+            for (int i = 0; i < parsedLines.Count; i += 3)
+            {
+                var journey = new Journey
+                {
+                    StartConditons = parsedLines[i],
+                    Commands = parsedLines[i + 1],
+                    EndConditons = parsedLines[i + 2],
+                };
+                journeys.Add(journey);
+            };
+
+            return journeys;
         }
 
 

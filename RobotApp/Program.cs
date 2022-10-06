@@ -1,5 +1,6 @@
 ﻿using RobotApp.Library;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace RobotApp
@@ -8,59 +9,61 @@ namespace RobotApp
     {
         static void Main()
         {
-            //Console.WriteLine("Please enter the file name:");
+
+            //Console.WriteLine("Please provide file name");
             //var fileName = Console.ReadLine();
+            // Write method to get file path from file name
             var inputFile = @"C:\Users\adko8\OneDrive\Desktop\robot-dev-test (2)\robot-dev-test\RobotApp\Sample2.txt";
-            Console.WriteLine("STARTING POSITIONS::");
-            foreach(string line in FileParser.GetStartPositions(inputFile))
-            {
-                
-                Console.WriteLine(line);
-                
-            };
-            Console.WriteLine("");
-            Console.WriteLine("COMMANDS::");
-            foreach (string line in FileParser.GetCommands(inputFile))
-            {
-
-                Console.WriteLine(line);
-
-            };
-            Console.WriteLine("");
-            Console.WriteLine("EXPECTED END POSITIONS::");
-            foreach (string line in FileParser.GetEndPositions(inputFile))
-            {
-
-                Console.WriteLine(line);
-
-            };
-            Console.WriteLine("");
-            Console.WriteLine("START DIRECTIONS::");
-            foreach (string line in FileParser.GetStartDirections(inputFile))
-            {
-
-                Console.WriteLine(line);
-
-            };
-            Console.WriteLine("");
-            Console.WriteLine("END DIRECTIONS::");
-            foreach (string line in FileParser.GetEndDirections(inputFile))
-            {
-
-                Console.WriteLine(line);
-
-            };
 
             var rowLength = FileParser.GetGridSize(inputFile).GetLength(0);
             var colLength = FileParser.GetGridSize(inputFile).GetLength(1);
-            string[,] grid = new string[rowLength, colLength];
-            grid[0, 0] = "X";
+            Grid grid = new Grid
+            {
+                Rows = rowLength,
+                Columns = colLength,
+            };
+
+             
+
+            var parsedObstacles = FileParser.GetObstacles(inputFile);
+            List<int[]> obstacles = new List<int[]>();
+            foreach(var obstacle in parsedObstacles)
+            {
+                obstacles.Add(obstacle);
+            };
+
+            
+            var g = grid.Create(obstacles);
+
+            foreach(var g2 in g)
+            {
+                Console.WriteLine(g.Length);
+            }
 
             //Console.WriteLine(Path.GetFullPath("sample.txt") );
+
+            // Create new journey every 3 elements in parsedLines
+            // then have robot loop through each journey and at the 
+            // end report success or failure oob
             
 
+            
 
+            var journeys = FileParser.GetJourneys(inputFile);
 
+            int counter = 0;
+            foreach(var journey in journeys)
+            {
+                counter++;
+                Console.WriteLine($"Journey {counter}:");
+                Console.WriteLine($"Start conditions: {journey.StartConditons}");
+                Console.WriteLine($"Commands: {journey.Commands}");
+                Console.WriteLine($"End conditions: {journey.EndConditons}");
+                Console.WriteLine("");
+                Console.WriteLine("");
+            }
+
+            
 
 
 
