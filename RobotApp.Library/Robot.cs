@@ -7,12 +7,11 @@ using RobotApp.Library;
 
 namespace RobotApp.Library
 {
-    public class Robot : IRobot
+    public class Robot
     {
-        public string StartPosition { get; set; } = "";
-        public string EndPosition { get; set; } = "";
-        public string StartDirection { get; set; } = "";
-        public string EndDirection { get; set; } = "";
+        public string Position { get; set; } = "";
+
+        public char Direction { get; set; }
 
 
 
