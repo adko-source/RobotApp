@@ -23,8 +23,6 @@ namespace RobotApp
                 Columns = colLength,
             };
 
-             
-
             var parsedObstacles = FileParser.GetObstacles(inputFile);
             List<int[]> obstacles = new List<int[]>();
             foreach(var obstacle in parsedObstacles)
@@ -35,19 +33,13 @@ namespace RobotApp
             
             var g = grid.Create(obstacles);
 
-            foreach(var g2 in g)
+            Console.WriteLine(g[1, 2]);
+            Console.WriteLine(g[1,3]);
+            Console.WriteLine(g[2, 4]);
+            if(g[1,2] == 'O')
             {
-                Console.WriteLine(g.Length);
+                Console.WriteLine("OBSTACLE HERE");
             }
-
-            //Console.WriteLine(Path.GetFullPath("sample.txt") );
-
-            // Create new journey every 3 elements in parsedLines
-            // then have robot loop through each journey and at the 
-            // end report success or failure oob
-            
-
-            
 
             var journeys = FileParser.GetJourneys(inputFile);
 
@@ -57,12 +49,14 @@ namespace RobotApp
                 counter++;
                 Console.WriteLine($"Journey {counter}:");
                 Console.WriteLine($"Start conditions: {journey.StartConditons}");
-                Console.WriteLine($"Commands: {journey.Commands}");
+                Console.WriteLine($"Commands: {journey.Movements}");
                 Console.WriteLine($"End conditions: {journey.EndConditons}");
                 Console.WriteLine("");
                 Console.WriteLine("");
             }
 
+            var robot = new Robot();
+            robot.GiveInstructionsAndStart(inputFile);
             
 
 
