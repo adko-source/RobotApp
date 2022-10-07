@@ -8,14 +8,16 @@ namespace RobotApp.Library
         public int Columns { get; set; } = 0;
         public int[] Obstacles { get; set; } = new int[2];
 
-        public int[,] Create(List<int[]> obstacles)
+        public char[,] Create(List<int[]> obstacles)
         {
-            var grid = new int[Rows, Columns];
+            var grid = new char[Rows, Columns];
+
             SetObstacles(obstacles, grid);
+
             return grid;
         }
 
-        private void SetObstacles(List<int[]> obstacles, int[,] grid)
+        private static void SetObstacles(List<int[]> obstacles, char[,] grid)
         {
             foreach(var obstacle in obstacles)
             {

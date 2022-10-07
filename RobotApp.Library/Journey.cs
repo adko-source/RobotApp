@@ -12,17 +12,21 @@ namespace RobotApp.Library
 
         public string EndConditons { get; set; } = string.Empty;
 
-        public string Commands { get; set; } = string.Empty;
+        public string Movements { get; set; } = string.Empty;
+        
 
-        public string GetStartPosition()
+        public int[] GetStartPosition()
         {
-            Console.WriteLine(StartConditons.Substring(0, 1));
-            return StartConditons.Substring(0,2);
+            var startConditions = StartConditons.Split();
+            var row = int.Parse(startConditions[0]);
+            var col = int.Parse(startConditions[1]);
+       
+            return new int[2] {  row,  col };
         }
 
-        public string GetStartDirection()
+        public char GetStartDirection()
         {
-            return StartConditons.Substring(2);
+            return StartConditons.Substring(2).ToCharArray()[0]; ;
         }
 
         public string GetEndPosition()
@@ -31,14 +35,14 @@ namespace RobotApp.Library
             return EndConditons.Substring(0, 2);
         }
 
-        public string GetEndDirection()
+        public char GetEndDirection()
         {
-            return EndConditons.Substring(2);
+            return EndConditons.Substring(2).ToCharArray()[0];
         }
 
-        public List<char> GetCommands()
+        public List<char> GetMovements()
         {
-            return Commands.ToCharArray().ToList();
+            return Movements.ToCharArray().ToList();
         }
     }
 }

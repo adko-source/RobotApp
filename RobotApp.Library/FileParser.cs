@@ -71,10 +71,11 @@ namespace RobotApp.Library
 
             for (int i = 0; i < parsedLines.Count; i += 3)
             {
+                
                 var journey = new Journey
                 {
                     StartConditons = parsedLines[i],
-                    Commands = parsedLines[i + 1],
+                    Movements = parsedLines[i + 1],
                     EndConditons = parsedLines[i + 2],
                 };
                 journeys.Add(journey);
