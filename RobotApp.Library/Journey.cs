@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RobotApp.Library
 {
-    public class Journey
+    public record Journey
     {
         public string StartConditons { get; set; } = string.Empty;
 
@@ -18,15 +18,15 @@ namespace RobotApp.Library
         public int[] GetStartPosition()
         {
             var startConditions = StartConditons.Split();
-            var row = int.Parse(startConditions[0]);
-            var col = int.Parse(startConditions[1]);
+            var col = int.Parse(startConditions[0]);
+            var row = int.Parse(startConditions[1]);
        
-            return new int[2] {  row,  col };
+            return new int[2] {  col,  row };
         }
 
         public char GetStartDirection()
         {
-            return StartConditons.Substring(2).ToCharArray()[0]; ;
+            return StartConditons.Substring(2).ToCharArray()[2];
         }
 
         public string GetEndPosition()

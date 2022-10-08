@@ -10,17 +10,23 @@ namespace RobotApp
         static void Main()
         {
 
-            //Console.WriteLine("Please provide file name");
+            // TODO: Write method to get file path from file name
+            // TODO: Check file exists
             //var fileName = Console.ReadLine();
-            // Write method to get file path from file name
+
+            // change classes to records to make them immutable 
+            // keep only data inside, bring methods to helper class?
+
+            // pass records into constructors and don't use primative types
+
             var inputFile = @"C:\Users\adko8\OneDrive\Desktop\robot-dev-test (2)\robot-dev-test\RobotApp\Sample2.txt";
 
-            var rowLength = FileParser.GetGridSize(inputFile).GetLength(0);
-            var colLength = FileParser.GetGridSize(inputFile).GetLength(1);
+            var colLength = FileParser.GetGridSize(inputFile).GetLength(0);
+            var rowLength = FileParser.GetGridSize(inputFile).GetLength(1);
             Grid grid = new Grid
             {
-                Rows = rowLength,
                 Columns = colLength,
+                Rows = rowLength 
             };
 
             var parsedObstacles = FileParser.GetObstacles(inputFile);
@@ -31,7 +37,7 @@ namespace RobotApp
             };
 
             
-            var g = grid.Create(obstacles);
+            var g = grid.CreateGrid(obstacles);
 
             Console.WriteLine(g[1, 2]);
             Console.WriteLine(g[1,3]);
