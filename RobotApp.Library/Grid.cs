@@ -2,15 +2,15 @@
 
 namespace RobotApp.Library
 {
-    public class Grid
+    public record Grid
     {
-        public int Rows { get; set; } = 0;
         public int Columns { get; set; } = 0;
+        public int Rows { get; set; } = 0;
         public int[] Obstacles { get; set; } = new int[2];
 
-        public char[,] Create(List<int[]> obstacles)
+        public char[,] CreateGrid(List<int[]> obstacles)
         {
-            var grid = new char[Rows, Columns];
+            var grid = new char[Columns, Rows];
 
             SetObstacles(obstacles, grid);
 

@@ -13,13 +13,7 @@ namespace RobotApp.Library
 
         public char Direction { get; set; }
         public List<char> Commands { get; set; } = new List<char>();
-        private void Start()
-        {
-            Console.WriteLine("Robot started");
-            Console.WriteLine($"I'm at row {Position[0]} and col {Position[1]}");
-            Console.WriteLine($"I'm facing direction {Direction}");
-        }
-
+       
         public List<char> GiveInstructionsAndStart(string inputFile)
         {
             var journeys = FileParser.GetJourneys(inputFile);
@@ -39,6 +33,22 @@ namespace RobotApp.Library
             return commands;
         }
 
+        private void Start()
+        {
+            Console.WriteLine("Robot started");
+            Console.WriteLine($"I'm at col {Position[0]} and row {Position[1]}");
+            Console.WriteLine($"I'm facing direction {Direction}");
+            Move();
+        }
+
+        private void Move()
+        {
+            Console.WriteLine("My commands are:");
+            foreach(var command in Commands)
+            {
+                Console.WriteLine(command);
+            }
+        }
 
 
 

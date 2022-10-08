@@ -13,8 +13,9 @@ namespace RobotApp.Library
         {
 
             string[] instructions = File.ReadAllLines(filePath);
-            int rows = 0;
             int cols = 0;
+            int rows = 0;
+            
 
             foreach (string item in instructions)
             {
@@ -42,9 +43,9 @@ namespace RobotApp.Library
                 var formattedLine = line.Trim().ToUpper();
                 if (formattedLine.Contains("OBSTACLE"))
                 {
-                    var obstacleRow = int.Parse(formattedLine.Split(" ")[1]);
-                    var obstacleCol = int.Parse(formattedLine.Split(" ")[2]);
-                    obstacles.Add(new int[2] { obstacleRow, obstacleCol });
+                    var obstacleCol = int.Parse(formattedLine.Split(" ")[1]);
+                    var obstacleRow = int.Parse(formattedLine.Split(" ")[2]);
+                    obstacles.Add(new int[2] { obstacleCol, obstacleRow });
                 };
             } 
 
