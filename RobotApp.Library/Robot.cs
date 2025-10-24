@@ -14,9 +14,9 @@ namespace RobotApp.Library
         public char Direction { get; set; }
         public List<char> Commands { get; set; } = new List<char>();
        
-        public List<char> GiveInstructionsAndStart(string inputFile)
+        public List<char> GiveInstructionsAndStart(string[] instuctions)
         {
-            var journeys = FileParser.GetJourneys(inputFile);
+            var journeys = FileParser.GetJourneys(instuctions);
             var commands = new List<char>();
             foreach (var journey in journeys)
             {

@@ -9,10 +9,8 @@ namespace RobotApp.Library
     public static class FileParser
     {
         
-        public static int[,] GetGridSize(string filePath)
+        public static int[,] GetGridSize(string[] instructions)
         {
-
-            string[] instructions = File.ReadAllLines(filePath);
             int cols = 0;
             int rows = 0;
             
@@ -32,13 +30,12 @@ namespace RobotApp.Library
             int[,] gridSize = new int[rows, cols];
             return gridSize;
         }
-        public static List<int[]> GetObstacles(string filePath)
+        public static List<int[]> GetObstacles(string[] instructions)
         {
             // Create list and add each x line to it to get all starting positions
-            string[] fileContent = File.ReadAllLines(filePath);
             List<int[]> obstacles = new List<int[]>();
 
-            foreach (string line in fileContent)
+            foreach (string line in instructions)
             {
                 var formattedLine = line.Trim().ToUpper();
                 if (formattedLine.Contains("OBSTACLE"))
@@ -51,14 +48,13 @@ namespace RobotApp.Library
 
             return obstacles;
         }
-        public static List<Journey> GetJourneys(string filePath)
+        public static List<Journey> GetJourneys(string[] instructions)
         {
             // Create list and add each x line to it to get all starting positions
-            string[] fileContent = File.ReadAllLines(filePath);
             List<string> parsedLines = new List<string>();
             List<Journey> journeys = new List<Journey>();
 
-            foreach (string line in fileContent)
+            foreach (string line in instructions)
             {
                 var formattedLine = line.Trim().ToUpper();
                 if (formattedLine.Contains("OBSTACLE") == false &&

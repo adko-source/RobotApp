@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RobotApp.Library\RobotApp.Library.csproj" />
+    <None Include="Sample2.txt" CopyToOutputDirectory="Always" />
   </ItemGroup>
 
   

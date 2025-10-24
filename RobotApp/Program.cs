@@ -19,17 +19,18 @@ namespace RobotApp
 
             // pass records into constructors and don't use primative types
 
-            var inputFile = @"C:\Users\adko8\OneDrive\Desktop\robot-dev-test (2)\robot-dev-test\RobotApp\Sample2.txt";
+            string filePath = Path.Combine(AppContext.BaseDirectory, "Sample2.txt");
+            string[] instructions = File.ReadAllLines(filePath);
 
-            var colLength = FileParser.GetGridSize(inputFile).GetLength(0);
-            var rowLength = FileParser.GetGridSize(inputFile).GetLength(1);
+            var colLength = FileParser.GetGridSize(instructions).GetLength(0);
+            var rowLength = FileParser.GetGridSize(instructions).GetLength(1);
             Grid grid = new Grid
             {
                 Columns = colLength,
                 Rows = rowLength 
             };
 
-            var parsedObstacles = FileParser.GetObstacles(inputFile);
+            var parsedObstacles = FileParser.GetObstacles(instructions);
             List<int[]> obstacles = new List<int[]>();
             foreach(var obstacle in parsedObstacles)
             {
@@ -47,7 +48,7 @@ namespace RobotApp
                 Console.WriteLine("OBSTACLE HERE");
             }
 
-            var journeys = FileParser.GetJourneys(inputFile);
+            var journeys = FileParser.GetJourneys(instructions);
 
             int counter = 0;
             foreach(var journey in journeys)
@@ -62,7 +63,7 @@ namespace RobotApp
             }
 
             var robot = new Robot();
-            robot.GiveInstructionsAndStart(inputFile);
+            robot.GiveInstructionsAndStart(instructions);
             
 
 
