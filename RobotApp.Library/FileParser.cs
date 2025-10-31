@@ -14,7 +14,6 @@ namespace RobotApp.Library
             int cols = 0;
             int rows = 0;
             
-
             foreach (string item in instructions)
             {
                 if (item.Trim().ToUpper().Contains("GRID"))
@@ -27,7 +26,9 @@ namespace RobotApp.Library
                 }
 
             };
+
             int[,] gridSize = new int[rows, cols];
+
             return gridSize;
         }
         public static List<int[]> GetObstacles(string[] instructions)
@@ -80,7 +81,5 @@ namespace RobotApp.Library
 
             return journeys;
         }
-
-
     }
 }

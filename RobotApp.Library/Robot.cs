@@ -17,7 +17,9 @@ namespace RobotApp.Library
         public List<char> GiveInstructionsAndStart(string[] instuctions)
         {
             var journeys = FileParser.GetJourneys(instuctions);
+
             var commands = new List<char>();
+
             foreach (var journey in journeys)
             {
                 Position = journey.GetStartPosition();
@@ -27,7 +29,6 @@ namespace RobotApp.Library
                 Commands = journey.GetMovements();
 
                 Start();
-
             };
 
             return commands;
@@ -35,19 +36,23 @@ namespace RobotApp.Library
 
         private void Start()
         {
-            Console.WriteLine("Robot started");
-            Console.WriteLine($"I'm at col {Position[0]} and row {Position[1]}");
-            Console.WriteLine($"I'm facing direction {Direction}");
+            Console.WriteLine("Robot started... Executing intstructions...");
+            Console.WriteLine($"Starting at col {Position[0]} and row {Position[1]}");
+            Console.WriteLine($"Facing direction {Direction}");
             Move();
         }
 
         private void Move()
         {
-            Console.WriteLine("My commands are:");
-            foreach(var command in Commands)
+            Console.WriteLine("Commands:");
+            foreach (var command in Commands)
             {
-                Console.WriteLine(command);
+                Console.WriteLine($"Move {command}");
+
             }
+
+            Console.WriteLine();
+            Console.WriteLine();
         }
 
 

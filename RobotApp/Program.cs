@@ -7,22 +7,28 @@ namespace RobotApp
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
+            var filePath = args[0];
+            Console.WriteLine($"Looking for instructions at {filePath}");
 
-            // TODO: Write method to get file path from file name
-            // TODO: Check file exists
-            //var fileName = Console.ReadLine();
+            if (File.Exists(filePath))
+            {
+                Console.WriteLine("Instructions found...");
+                Console.WriteLine("Reading instructions...");
 
-            // change classes to records to make them immutable 
-            // keep only data inside, bring methods to helper class?
 
-            // pass records into constructors and don't use primative types
+            }
+            else
+            {
+                Console.WriteLine("Couldn't find the file. Please try again.");
+                return;
+            }
 
-            string filePath = Path.Combine(AppContext.BaseDirectory, "Sample2.txt");
             string[] instructions = File.ReadAllLines(filePath);
-
+        
             var colLength = FileParser.GetGridSize(instructions).GetLength(0);
+    
             var rowLength = FileParser.GetGridSize(instructions).GetLength(1);
             Grid grid = new Grid
             {
@@ -31,18 +37,18 @@ namespace RobotApp
             };
 
             var parsedObstacles = FileParser.GetObstacles(instructions);
-            List<int[]> obstacles = new List<int[]>();
+           
+            var obstacles = new List<int[]>();
             foreach(var obstacle in parsedObstacles)
             {
                 obstacles.Add(obstacle);
             };
 
-            
             var g = grid.CreateGrid(obstacles);
 
             Console.WriteLine(g[1, 2]);
             Console.WriteLine(g[1,3]);
-            Console.WriteLine(g[2, 4]);
+            //Console.WriteLine(g[2, 4]);
             if(g[1,2] == 'O')
             {
                 Console.WriteLine("OBSTACLE HERE");
