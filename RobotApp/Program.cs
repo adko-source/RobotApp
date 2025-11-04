@@ -11,8 +11,6 @@ namespace RobotApp
         {
             var filePath = args[0];
 
-            Console.WriteLine($"Looking for instructions at {filePath}");
-
             if (File.Exists(filePath))
             {
                 // Console.WriteLine("Instructions found...");
@@ -26,34 +24,16 @@ namespace RobotApp
 
             var instructions = File.ReadAllLines(filePath);
         
-            var colLength = FileParser.GetGridSize(instructions).GetLength(0);
-
-            var rowLength = FileParser.GetGridSize(instructions).GetLength(1);
-            
-            var grid = new Grid
-            {
-                Columns = colLength,
-                Rows = rowLength 
-            };
-
             var parsedObstacles = FileParser.GetObstacles(instructions);
-           
+
             var obstacles = new List<int[]>();
+            
             foreach(var obstacle in parsedObstacles)
             {
-                Console.WriteLine(obstacle);
                 obstacles.Add(obstacle);
             };
 
-            var g = grid.CreateGrid(obstacles);
-
-            Console.WriteLine(g[1,2]);
-            Console.WriteLine(g[1,3]);
-            //Console.WriteLine(g[2, 4]);
-            if(g[1,2] == 'O')
-            {
-                Console.WriteLine("OBSTACLE HERE");
-            }
+            var grid = Grid.BuildGrid(instructions);
 
             var journeys = FileParser.GetJourneys(instructions);
 

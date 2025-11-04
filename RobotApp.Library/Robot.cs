@@ -31,23 +31,17 @@ namespace RobotApp.Library
 
         private void Start()
         {
-            Console.WriteLine("Robot started... Executing intstructions...");
-            Console.WriteLine($"Starting at col {Position[0]} and row {Position[1]}");
-            Console.WriteLine($"Facing direction {Direction}");
             Move();
         }
 
         private void Move()
         {
-            Console.WriteLine("Commands:");
             foreach (var command in Commands)
             {
-                Console.WriteLine($"Move {command}");
+                
 
             }
 
-            Console.WriteLine();
-            Console.WriteLine();
         }
 
         private static void CheckCurrentStatus(string currentPosition)

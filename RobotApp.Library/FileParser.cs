@@ -43,11 +43,7 @@ namespace RobotApp.Library
                     obstacles.Add(new int[2] { obstacleCol, obstacleRow });
                 }
             }
-
-            foreach(int[] obstalce in obstacles)
-            {
-                Console.WriteLine(obstalce);
-            }
+            
             return obstacles;
         }
         public static List<Journey> GetJourneys(string[] instructions)
