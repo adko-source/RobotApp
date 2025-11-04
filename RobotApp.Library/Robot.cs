@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RobotApp.Library;
+﻿
 
 namespace RobotApp.Library
 {
@@ -53,6 +48,31 @@ namespace RobotApp.Library
 
             Console.WriteLine();
             Console.WriteLine();
+        }
+
+        private static void CheckCurrentStatus(string currentPosition)
+        {
+            // switch(currentPosition)
+            // {
+            //     case ""
+            // }
+        }
+
+        private static void PrintJourneyLog(string result)
+        {
+
+
+            if (result == "")
+            {
+                Console.WriteLine("ss");
+            }
+            else
+            {
+                Console.WriteLine("ss");
+            }
+
+            
+
         }
 
 

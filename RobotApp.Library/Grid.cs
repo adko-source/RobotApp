@@ -19,18 +19,21 @@ namespace RobotApp.Library
 
         private static void SetObstacles(List<int[]> obstacles, char[,] grid)
         {
-            foreach(var obstacle in obstacles)
+            Console.WriteLine($"grid rows: {grid.GetLength(0)}");
+            Console.WriteLine($"grid cols: {grid.GetLength(1)}");
+            foreach (var obstacle in obstacles)
             {
-                var obstacleRow = obstacle[0];
-                var obstacleCol = obstacle[1];
+                var obstacleCol = obstacle[0];
+                Console.WriteLine($"obstacle col: {obstacleCol}");
+                var obstacleRow = obstacle[1];
+                Console.WriteLine($"obstacle row: {obstacleRow}");
                 grid[obstacleRow, obstacleCol] = 'O';
+
+                Console.WriteLine($"obstacle value: {grid[obstacleRow, obstacleCol]}");
             }
             
+            
+            
         }
-
-
-
-        
-
     }
 }
