@@ -8,7 +8,7 @@ namespace RobotApp.Library
 
         public string EndConditons { get; set; } = string.Empty;
 
-        public string Movements { get; set; } = string.Empty;
+        public string Commands { get; set; } = string.Empty;
         
 
         public Position GetStartPosition()
@@ -64,9 +64,9 @@ namespace RobotApp.Library
             };
         }
 
-        public List<char> GetMovements()
+        public List<char> GetCommands()
         {
-            return Movements.ToCharArray().ToList();
+            return Commands.ToCharArray().ToList();
         }
     }
 }

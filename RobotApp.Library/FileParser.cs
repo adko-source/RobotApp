@@ -7,8 +7,8 @@ namespace RobotApp.Library
 
         public static int[,] GetGridSize(string[] instructions)
         {
-            int cols = 0;
-            int rows = 0;
+            var cols = 0;
+            var rows = 0;
 
             foreach (string line in instructions)
             {
@@ -70,7 +70,7 @@ namespace RobotApp.Library
                 var journey = new Journey
                 {
                     StartConditons = parsedLines[i],
-                    Movements = parsedLines[i + 1],
+                    Commands = parsedLines[i + 1],
                     EndConditons = parsedLines[i + 2],
                 };
 

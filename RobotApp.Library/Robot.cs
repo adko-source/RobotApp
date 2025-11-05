@@ -32,7 +32,7 @@ namespace RobotApp.Library
 
                 StartDirection = journey.GetStartDirection();
 
-                Commands = journey.GetMovements();
+                Commands = journey.GetCommands();
 
                 EndPosition = journey.GetEndPosition();
 
@@ -46,16 +46,24 @@ namespace RobotApp.Library
 
         private void Start()
         {
+            CurrentDirection = StartDirection;
+            
+            Console.WriteLine($"starting position: {string.Join(" ", StartPosition?.Col.ToString() + " " + StartPosition?.Row.ToString())} {StartDirection}");
+            Console.WriteLine($"commands: {string.Join(", ", Commands)}");
+
+            Console.WriteLine($"ending position: {string.Join(" ", EndPosition?.Col.ToString() + " " + EndPosition?.Row.ToString())} {EndDirection}");
+
             foreach (var command in Commands)
             {
-        
-                var currentDirection = CurrentDirection;
 
-
-                if(command == 'R')
+                if (command == 'L' || command == 'R')
                 {
-                    
-                };
+                    Turn(command);
+                }
+                else if (command == 'F')
+                {
+                    Move(command);
+                }
                 // Direction = command switch
                 // {
                 //     'R' => 'E',
@@ -63,22 +71,45 @@ namespace RobotApp.Library
                 // };
 
             }
-            Console.WriteLine($"starting position: { string.Join(" ", StartPosition?.Col.ToString() + " " + StartPosition?.Row.ToString())} {StartDirection}");
-            Console.WriteLine($"commands: {string.Join(", ", Commands)}");
-
-            Console.WriteLine($"ending position: { string.Join(" ", EndPosition?.Col.ToString() + " " + EndPosition?.Row.ToString())} {EndDirection}");
 
 
-            Move();
+            //Move();
+        }
+        
+        public void Turn(char command)
+        {
+            System.Console.WriteLine($"Direction before turning {CurrentDirection}");
+
+            if (command == 'R')
+            {
+                CurrentDirection = CurrentDirection switch
+                {
+                    Direction.N => Direction.E,
+                    Direction.E => Direction.S,
+                    Direction.S => Direction.W,
+                    Direction.W => Direction.N,
+                    _ => CurrentDirection
+                };
+            }
+            else if (command == 'L')
+            {
+                CurrentDirection = CurrentDirection switch
+                {
+                    Direction.N => Direction.W,
+                    Direction.W => Direction.S,
+                    Direction.S => Direction.E,
+                    Direction.E => Direction.N,
+                    _ => CurrentDirection
+                };
+            }
+
+                
+            System.Console.WriteLine($"Direction after turning {CurrentDirection}");
         }
 
-        private void Move()
+        private void Move(char command)
         {
-            foreach (var command in Commands)
-            {
-
-
-            }
+            
 
         }
         
