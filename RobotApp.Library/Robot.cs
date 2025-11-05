@@ -52,10 +52,6 @@ namespace RobotApp.Library
                 var currentDirection = CurrentDirection;
 
 
-                Console.WriteLine(currentDirection);
-
-                
-
                 if(command == 'R')
                 {
                     
@@ -67,14 +63,12 @@ namespace RobotApp.Library
                 // };
 
             }
-            Console.WriteLine($"starting position: { string.Join(" ", StartPosition)} {StartDirection}");
-            Console.WriteLine($"starting direction {StartDirection}");
+            Console.WriteLine($"starting position: { string.Join(" ", StartPosition?.Col.ToString() + " " + StartPosition?.Row.ToString())} {StartDirection}");
             Console.WriteLine($"commands: {string.Join(", ", Commands)}");
 
-            Console.WriteLine($"ending position: { string.Join(" ", StartPosition)} {StartDirection}");
+            Console.WriteLine($"ending position: { string.Join(" ", EndPosition?.Col.ToString() + " " + EndPosition?.Row.ToString())} {EndDirection}");
 
 
-            Console.WriteLine($"ending direction {EndDirection}");
             Move();
         }
 

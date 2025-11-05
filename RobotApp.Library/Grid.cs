@@ -36,15 +36,15 @@ namespace RobotApp.Library
             foreach (var obstacle in obstacles)
             {
                 var obstacleCol = obstacle[0];
-                Console.WriteLine($"obstacle col: {obstacleCol}");
+                //Console.WriteLine($"obstacle col: {obstacleCol}");
 
                 var obstacleRow = obstacle[1];
-                Console.WriteLine($"obstacle row: {obstacleRow}");
+                //Console.WriteLine($"obstacle row: {obstacleRow}");
                 
                 // Set obstacle 'O' in grid[row, col]
                 grid[obstacleRow, obstacleCol] = 'O';
 
-                Console.WriteLine($"obstacle value: {grid[obstacleRow, obstacleCol]}");
+                //Console.WriteLine($"obstacle value: {grid[obstacleRow, obstacleCol]}");
             }
         }
     }

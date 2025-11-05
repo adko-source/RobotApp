@@ -35,14 +35,6 @@ namespace RobotApp
 
             var grid = Grid.BuildGrid(instructions);
 
-            var journeys = FileParser.GetJourneys(instructions);
-
-            int counter = 0;
-            foreach(var journey in journeys)
-            {
-                counter++;
-            }
-
             var robot = new Robot();
             robot.GiveInstructionsAndStart(instructions);
             

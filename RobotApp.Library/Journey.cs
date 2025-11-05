@@ -40,7 +40,7 @@ namespace RobotApp.Library
         {
             var endConditions = EndConditons.Split();
 
-            Console.WriteLine($"endconditons: {endConditions}");
+            Console.WriteLine($"endconditons: {string.Join(",", endConditions)}");
 
             var col = int.Parse(endConditions[0]);
 
