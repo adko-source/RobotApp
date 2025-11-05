@@ -10,11 +10,13 @@ namespace RobotApp.Library
 
         public static char[,] BuildGrid(string[] instructions)
         {
-            var cols = FileParser.GetGridSize(instructions).GetLength(0);
+            var rows = FileParser.GetGridSize(instructions).GetLength(0);
 
-            var rows = FileParser.GetGridSize(instructions).GetLength(1);
+            var cols = FileParser.GetGridSize(instructions).GetLength(1);
 
-            var grid = new char[cols, rows];
+            Console.WriteLine($"Building grid with {cols} cols and {rows} rows");
+
+            var grid = new char[rows, cols];
 
             var parsedObstacles = FileParser.GetObstacles(instructions);
            

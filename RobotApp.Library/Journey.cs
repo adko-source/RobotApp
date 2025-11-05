@@ -11,29 +11,57 @@ namespace RobotApp.Library
         public string Movements { get; set; } = string.Empty;
         
 
-        public int[] GetStartPosition()
+        public Position GetStartPosition()
         {
             var startConditions = StartConditons.Split();
+
             var col = int.Parse(startConditions[0]);
+
             var row = int.Parse(startConditions[1]);
-       
-            return new int[2] {  col,  row };
+
+            return new Position { Col = col, Row = row };
         }
 
-        public char GetStartDirection()
+        public Direction GetStartDirection()
         {
-            return StartConditons.Substring(2).ToCharArray()[2];
+            var startDirectionChar = StartConditons.Substring(2).ToCharArray()[2];
+
+            return startDirectionChar switch
+            {
+                'N' => Direction.N,
+                'E' => Direction.E,
+                'S' => Direction.S,
+                'W' => Direction.W,
+                _ => throw new ArgumentException("Invalid direction character, should be N E S W")
+            };
         }
 
-        public string GetEndPosition()
+        public Position GetEndPosition()
         {
-            Console.WriteLine(EndConditons.Substring(0, 1));
-            return EndConditons.Substring(0, 2);
+            var endConditions = EndConditons.Split();
+
+            Console.WriteLine($"endconditons: {endConditions}");
+
+            var col = int.Parse(endConditions[0]);
+
+            var row = int.Parse(endConditions[1]);
+
+            return new Position { Col = col, Row = row };
         }
 
-        public char GetEndDirection()
+        public Direction GetEndDirection()
         {
-            return EndConditons.Substring(2).ToCharArray()[0];
+            var endDirectionChar = EndConditons.Substring(2).ToCharArray()[2];
+            Console.WriteLine($"endDirectionChar {endDirectionChar}");
+
+            return endDirectionChar switch
+            {
+                'N' => Direction.N,
+                'E' => Direction.E,
+                'S' => Direction.S,
+                'W' => Direction.W,
+                _ => throw new ArgumentException("Invalid direction character, should be N E S W")
+            };
         }
 
         public List<char> GetMovements()

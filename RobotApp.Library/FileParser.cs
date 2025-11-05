@@ -43,7 +43,7 @@ namespace RobotApp.Library
                     obstacles.Add(new int[2] { obstacleCol, obstacleRow });
                 }
             }
-            
+
             return obstacles;
         }
         public static List<Journey> GetJourneys(string[] instructions)
@@ -73,10 +73,13 @@ namespace RobotApp.Library
                     Movements = parsedLines[i + 1],
                     EndConditons = parsedLines[i + 2],
                 };
+
                 journeys.Add(journey);
             }
 
             return journeys;
         }
     }
+
+    
 }
