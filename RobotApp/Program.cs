@@ -12,33 +12,25 @@ namespace RobotApp
         {
             var filePath = args[0];
 
-            if (File.Exists(filePath))
-            {
-                // Console.WriteLine("Instructions found...");
-                // Console.WriteLine("Reading instructions...");
-            }
-            else
+            if (!File.Exists(filePath))
             {
                 Console.WriteLine("Couldn't find the file. Please try again.");
                 return;
             }
-            
+
             var instructions = File.ReadAllLines(filePath)
                 .Where(line => !string.IsNullOrEmpty(line))
                 .ToArray();
-    
-            var parsedObstacles = FileParser.GetObstacles(instructions);
 
-            var obstacles = new List<int[]>();
-            
-            foreach(var obstacle in parsedObstacles)
+            if(!FileParser.IsValidFile(instructions))
             {
-                obstacles.Add(obstacle);
-            };
-
+                Console.WriteLine("Instructions aren't valid. Please see 'Sample2.txt' for expected format.");
+            }
+    
             var grid = Grid.BuildGrid(instructions);
 
             var robot = new Robot();
+
             robot.GiveInstructionsAndStart(instructions, grid);
             
         }

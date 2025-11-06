@@ -7,12 +7,9 @@ namespace RobotApp.Library
     public static class FileParser
     {
 
-        public static void ValidateFile(string[] instructions)
+        public static bool IsValidFile(string[] instructions)
         {
-            if (instructions.Length == 0 || !instructions.First().ToUpper().Contains("GRID"))
-            {
-                Console.WriteLine("Instructions aren't valid. Please see 'Sample2.txt' for expected format.");
-            }
+            return instructions.Length != 0 && instructions.First().ToUpper().Contains("GRID");
         }
         public static int[,] GetGridSize(string[] instructions)
         {
@@ -44,6 +41,8 @@ namespace RobotApp.Library
             // Create list and add each OBSTACLE line
             List<int[]> obstacles = new();
 
+            var parsingError = false;
+
             foreach (var (line, index) in instructions.Select((value, i) => (value, i)))
             {
                 var formattedLine = line.Trim().ToUpper();
@@ -55,8 +54,7 @@ namespace RobotApp.Library
                     // Check that OBSTACLE line isn't after a journey in the file
                     if ("NESW".Any(c => previousLine.ToUpper().Contains(c)))
                     {
-                        Console.WriteLine("Error parsing instructions file: OBSTACLE line should come before journeys.");
-                        break;
+                        parsingError = true;
                     }
                     else
                     {
@@ -65,8 +63,13 @@ namespace RobotApp.Library
                         var obstacleRow = int.Parse(formattedLine.Split(" ")[2]);
 
                         obstacles.Add(new int[2] { obstacleCol, obstacleRow });
-                    }    
+                    }
                 }
+            }
+            
+            if(parsingError)
+            {
+                Console.WriteLine("Error parsing instructions file: OBSTACLES line should come before journeys.");
             }
 
             return obstacles;
