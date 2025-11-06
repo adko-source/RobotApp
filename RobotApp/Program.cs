@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace RobotApp
 {
@@ -21,9 +22,11 @@ namespace RobotApp
                 Console.WriteLine("Couldn't find the file. Please try again.");
                 return;
             }
-
-            var instructions = File.ReadAllLines(filePath);
-        
+            
+            var instructions = File.ReadAllLines(filePath)
+                .Where(line => !string.IsNullOrEmpty(line))
+                .ToArray();
+    
             var parsedObstacles = FileParser.GetObstacles(instructions);
 
             var obstacles = new List<int[]>();

@@ -1,13 +1,23 @@
 ﻿
 
+using System.Linq.Expressions;
+
 namespace RobotApp.Library
 {
     public static class FileParser
     {
 
+        public static void ValidateFile(string[] instructions)
+        {
+            if (instructions.Length == 0 || !instructions.First().ToUpper().Contains("GRID"))
+            {
+                Console.WriteLine("Instructions aren't valid. Please see 'Sample2.txt' for expected format.");
+            }
+        }
         public static int[,] GetGridSize(string[] instructions)
         {
             var cols = 0;
+
             var rows = 0;
 
             foreach (string line in instructions)
@@ -19,7 +29,9 @@ namespace RobotApp.Library
                     // Parse grid size from instructions
                     // Example line: GRID 4x4
                     var parsedGridSize = formattedLine.Split(" ")[1];
+
                     cols = int.Parse(parsedGridSize.Split("X")[0]);
+
                     rows = int.Parse(parsedGridSize.Split("X")[1]);
                 }
             }
@@ -32,15 +44,28 @@ namespace RobotApp.Library
             // Create list and add each OBSTACLE line
             List<int[]> obstacles = new();
 
-            foreach (string line in instructions)
+            foreach (var (line, index) in instructions.Select((value, i) => (value, i)))
             {
                 var formattedLine = line.Trim().ToUpper();
 
                 if (formattedLine.Contains("OBSTACLE"))
                 {
-                    var obstacleCol = int.Parse(formattedLine.Split(" ")[1]);
-                    var obstacleRow = int.Parse(formattedLine.Split(" ")[2]);
-                    obstacles.Add(new int[2] { obstacleCol, obstacleRow });
+                    string? previousLine = index > 0 ? instructions[index - 1] : "";
+
+                    // Check that OBSTACLE line isn't after a journey in the file
+                    if ("NESW".Any(c => previousLine.ToUpper().Contains(c)))
+                    {
+                        Console.WriteLine("Error parsing instructions file: OBSTACLE line should come before journeys.");
+                        break;
+                    }
+                    else
+                    {
+                        var obstacleCol = int.Parse(formattedLine.Split(" ")[1]);
+
+                        var obstacleRow = int.Parse(formattedLine.Split(" ")[2]);
+
+                        obstacles.Add(new int[2] { obstacleCol, obstacleRow });
+                    }    
                 }
             }
 
@@ -49,8 +74,9 @@ namespace RobotApp.Library
         public static List<Journey> GetJourneys(string[] instructions)
         {
             // Create list and add each x line to it to get all starting positions
-            List<string> parsedLines = new();
-            List<Journey> journeys = new();
+            var parsedLines = new List<string>();
+
+            var journeys = new List<Journey>();
 
             foreach (string line in instructions)
             {

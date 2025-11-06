@@ -19,7 +19,6 @@ namespace RobotApp.Library
         public Direction ExpectedEndDirection { get; set; }
         
 
-
         public List<char> GiveInstructionsAndStart(string[] instuctions, char[,] grid)
         {
             var journeys = FileParser.GetJourneys(instuctions);
@@ -46,13 +45,6 @@ namespace RobotApp.Library
 
         private void Start(char[,] grid)
         {
-            System.Console.WriteLine($"journey started pos {string.Join(" ", StartPosition)}");
-            System.Console.WriteLine($"journey started dir {StartDirection}");
-            System.Console.WriteLine($"journey commands {string.Join("", Commands)}");
-
-            System.Console.WriteLine($"journey expected end pos {string.Join(" ", ExpectedEndPosition)}");
-            System.Console.WriteLine($"journey expected end dir {ExpectedEndDirection}");
-
             CurrentPosition = StartPosition;
 
             CurrentDirection = StartDirection;
@@ -70,12 +62,12 @@ namespace RobotApp.Library
                     if (!IsCurrentPositionValid(grid))
                     {
                         Console.WriteLine("OUT OF BOUNDS");
-                        break;
+                        return;
                     }
                     else if (IsCrashed(grid))
                     {
                         Console.WriteLine($"CRASHED {CurrentPosition.Col} {CurrentPosition.Row} {CurrentDirection}");
-                        break;
+                        return;
                     }
                 }
             }
