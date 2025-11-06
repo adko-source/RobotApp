@@ -52,7 +52,7 @@ namespace RobotApp.Library
                     string? previousLine = index > 0 ? instructions[index - 1] : "";
 
                     // Check that OBSTACLE line isn't after a journey in the file
-                    if ("NESW".Any(c => previousLine.ToUpper().Contains(c)) && !previousLine.Contains("OBSTACLE"))
+                    if ("NESWRFL".Any(c => previousLine.ToUpper().Contains(c)) && !previousLine.Contains("OBSTACLE") && !previousLine.Contains("GRID"))
                     {
                         parsingError = true;
                     }
