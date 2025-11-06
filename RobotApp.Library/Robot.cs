@@ -5,16 +5,15 @@ namespace RobotApp.Library
 {
     public class Robot
     {
-        public Position? StartPosition { get; set; }
+        public Position StartPosition = new(0, 0);
 
-        public Position? CurrentPosition { get; set; }
-
+        public Position CurrentPosition = new(0, 0);
         public Direction StartDirection { get; set; }
 
         public Direction CurrentDirection { get; set; }
         public List<char> Commands { get; set; } = new List<char>();
 
-        public Position? ExpectedEndPosition { get; set; }
+        public Position ExpectedEndPosition = new(0, 0);
 
         public Direction ExpectedEndDirection { get; set; }
         
@@ -59,20 +58,20 @@ namespace RobotApp.Library
                 {
                     Move();
 
-                    if (!IsCurrentPositionValid(grid))
+                    if (!IsOutOfBounds(grid))
                     {
                         Console.WriteLine("OUT OF BOUNDS");
                         return;
                     }
                     else if (IsCrashed(grid))
                     {
-                        Console.WriteLine($"CRASHED {CurrentPosition.Col} {CurrentPosition.Row} {CurrentDirection}");
+                        Console.WriteLine($"CRASHED {CurrentPosition?.Col} {CurrentPosition?.Row} {CurrentDirection}");
                         return;
                     }
                 }
             }
 
-            var journeyResult = $"{CurrentPosition.Col} {CurrentPosition.Row} {CurrentDirection}";
+            var journeyResult = $"{CurrentPosition.Col} {CurrentPosition?.Row} {CurrentDirection}";
             
             var expectedResult = $"{ExpectedEndPosition.Col} {ExpectedEndPosition.Row} {ExpectedEndDirection}";
 
@@ -132,7 +131,7 @@ namespace RobotApp.Library
             CurrentPosition = newPosition;
         }
 
-        private bool IsCurrentPositionValid(char[,] grid)
+        private bool IsOutOfBounds(char[,] grid)
         {
             var maxRows = grid.GetLength(0) -1;
 
@@ -155,37 +154,5 @@ namespace RobotApp.Library
 
             return false;
         }
-
-        private static void CheckCurrentStatus(string currentPosition)
-        {
-            // switch(currentPosition)
-            // {
-            //     case ""
-            // }
-        }
-
-        private static void PrintJourneyLog(string result)
-        {
-
-
-            if (result == "")
-            {
-                Console.WriteLine("ss");
-            }
-            else
-            {
-                Console.WriteLine("ss");
-            }
-
-            
-
-        }
-
-
-
-
-
-
-
     }
 }

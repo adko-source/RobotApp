@@ -25,6 +25,7 @@ namespace RobotApp
             if(!FileParser.IsValidFile(instructions))
             {
                 Console.WriteLine("Instructions aren't valid. Please see 'Sample2.txt' for expected format.");
+                return;
             }
     
             var grid = Grid.BuildGrid(instructions);

@@ -36,7 +36,7 @@ namespace RobotApp.Library
             return new int[rows, cols];
         }
 
-        public static List<int[]> GetObstacles(string[] instructions)
+        public static List<int[]>? GetObstacles(string[] instructions)
         {
             // Create list and add each OBSTACLE line
             List<int[]> obstacles = new();
@@ -52,7 +52,7 @@ namespace RobotApp.Library
                     string? previousLine = index > 0 ? instructions[index - 1] : "";
 
                     // Check that OBSTACLE line isn't after a journey in the file
-                    if ("NESW".Any(c => previousLine.ToUpper().Contains(c)))
+                    if ("NESW".Any(c => previousLine.ToUpper().Contains(c)) && !previousLine.Contains("OBSTACLE"))
                     {
                         parsingError = true;
                     }
@@ -66,13 +66,10 @@ namespace RobotApp.Library
                     }
                 }
             }
-            
-            if(parsingError)
-            {
-                Console.WriteLine("Error parsing instructions file: OBSTACLES line should come before journeys.");
-            }
 
-            return obstacles;
+            return parsingError
+                ? throw new Exception("Error parsing instructions file: OBSTACLES line should come before journeys. Please see Sample2.txt for example of expected format.")
+                : obstacles;
         }
         public static List<Journey> GetJourneys(string[] instructions)
         {

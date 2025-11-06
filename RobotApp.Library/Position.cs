@@ -3,8 +3,8 @@ namespace RobotApp.Library
 {
     public record Position
     (
-        int Col,
+        int Col = 0,
 
-        int Row
+        int Row = 0
     );
 }
