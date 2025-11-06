@@ -45,7 +45,7 @@ namespace RobotApp.Library
 
                 var obstacleRow = obstacle[1];
                 
-                grid[obstacleRow, obstacleCol] = 'O';
+                grid[obstacleCol, obstacleRow] = 'O';
             }
         }
     }

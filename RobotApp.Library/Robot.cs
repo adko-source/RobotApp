@@ -11,6 +11,7 @@ namespace RobotApp.Library
         public Direction StartDirection { get; set; }
 
         public Direction CurrentDirection { get; set; }
+        
         public List<char> Commands { get; set; } = new List<char>();
 
         public Position ExpectedEndPosition = new(0, 0);
@@ -58,14 +59,14 @@ namespace RobotApp.Library
                 {
                     Move();
 
-                    if (!IsOutOfBounds(grid))
+                    if (IsOutOfBounds(grid))
                     {
                         Console.WriteLine("OUT OF BOUNDS");
                         return;
                     }
                     else if (IsCrashed(grid))
                     {
-                        Console.WriteLine($"CRASHED {CurrentPosition?.Col} {CurrentPosition?.Row} {CurrentDirection}");
+                        Console.WriteLine($"CRASHED {CurrentPosition.Col} {CurrentPosition.Row}");
                         return;
                     }
                 }
@@ -133,26 +134,16 @@ namespace RobotApp.Library
 
         private bool IsOutOfBounds(char[,] grid)
         {
-            var maxRows = grid.GetLength(0) -1;
+            var maxRows = grid.GetLength(0) - 1;
 
-            var maxCols = grid.GetLength(1) -1;
+            var maxCols = grid.GetLength(1) - 1;
 
-            if (CurrentPosition?.Row > maxRows || CurrentPosition?.Row < 0 || CurrentPosition?.Col >= maxCols || CurrentPosition?.Col < 0)
-            {
-                return false;
-            }
-
-            return true;
+            return (CurrentPosition.Row > maxRows) || (CurrentPosition.Row < 0) || (CurrentPosition.Col >= maxCols) || (CurrentPosition.Col < 0);
         }
 
         private bool IsCrashed(char[,] grid)
         {
-            if (grid[CurrentPosition.Row, CurrentPosition.Col] == 'O')
-            {
-                return true;
-            }
-
-            return false;
+            return grid[CurrentPosition.Col, CurrentPosition.Row] == 'O';
         }
     }
 }
