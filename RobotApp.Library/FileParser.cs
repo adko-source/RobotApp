@@ -67,7 +67,7 @@ namespace RobotApp.Library
             }
 
             return parsingError
-                ? throw new Exception("Error parsing instructions file: OBSTACLES line should come before journeys. Please see Sample2.txt for example of expected format.")
+                ? throw new Exception("Error parsing instructions file: OBSTACLE lines should come before journeys. Please see Sample2.txt for example of expected format.")
                 : obstacles;
         }
         public static List<Journey> GetJourneys(string[] instructions)

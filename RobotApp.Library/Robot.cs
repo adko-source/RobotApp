@@ -43,7 +43,7 @@ namespace RobotApp.Library
             return commands;
         }
 
-        private void Start(char[,] grid)
+        public void Start(char[,] grid)
         {
             CurrentPosition = StartPosition;
 
@@ -107,7 +107,7 @@ namespace RobotApp.Library
             }
         }
 
-        private void Move()
+        public void Move()
         {
             var rowOffset = CurrentDirection switch
             {
@@ -132,7 +132,7 @@ namespace RobotApp.Library
             CurrentPosition = newPosition;
         }
 
-        private bool IsOutOfBounds(char[,] grid)
+        public bool IsOutOfBounds(char[,] grid)
         {
             var maxRows = grid.GetLength(0) - 1;
 
@@ -141,7 +141,7 @@ namespace RobotApp.Library
             return (CurrentPosition.Row > maxRows) || (CurrentPosition.Row < 0) || (CurrentPosition.Col >= maxCols) || (CurrentPosition.Col < 0);
         }
 
-        private bool IsCrashed(char[,] grid)
+        public bool IsCrashed(char[,] grid)
         {
             return grid[CurrentPosition.Col, CurrentPosition.Row] == 'O';
         }

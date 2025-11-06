@@ -33,3 +33,7 @@ SUCCESS = The final coordinates and direction after the journey match the expect
 FAILURE = The final coordinates and direction after the journey don't match the expected coordinates and direction<br>
 OUT OF BOUNDS = The journey took the robot outside of the grid<br>
 CRASHED = The robot hit an obstacle 'O' within the grid at the displayed coordinates
+
+## Running Unit Tests
+1. cd into RobotApp.Tests
+2. run `dotnet test`
