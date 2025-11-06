@@ -28,7 +28,7 @@ FAILURE 0 0 W<br>
 OUT OF BOUNDS<br>
 CRASHED 1 1<br>
 
-## Description of outputs
+### Description of outputs
 SUCCESS = The final coordinates and direction after the journey match the expected coordinates and direction<br>
 FAILURE = The final coordinates and direction after the journey don't match the expected coordinates and direction<br>
 OUT OF BOUNDS = The journey took the robot outside of the grid<br>
