@@ -36,7 +36,7 @@ namespace RobotApp
             var grid = Grid.BuildGrid(instructions);
 
             var robot = new Robot();
-            robot.GiveInstructionsAndStart(instructions);
+            robot.GiveInstructionsAndStart(instructions, grid);
             
         }
     }

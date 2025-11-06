@@ -19,7 +19,7 @@ namespace RobotApp.Library
 
             var row = int.Parse(startConditions[1]);
 
-            return new Position { Col = col, Row = row };
+            return new Position (col, row);
         }
 
         public Direction GetStartDirection()
@@ -40,19 +40,16 @@ namespace RobotApp.Library
         {
             var endConditions = EndConditons.Split();
 
-            Console.WriteLine($"endconditons: {string.Join(",", endConditions)}");
-
             var col = int.Parse(endConditions[0]);
 
             var row = int.Parse(endConditions[1]);
 
-            return new Position { Col = col, Row = row };
+            return new Position (col, row);
         }
 
         public Direction GetEndDirection()
         {
             var endDirectionChar = EndConditons.Substring(2).ToCharArray()[2];
-            Console.WriteLine($"endDirectionChar {endDirectionChar}");
 
             return endDirectionChar switch
             {

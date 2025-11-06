@@ -2,9 +2,9 @@
 namespace RobotApp.Library
 {
     public record Position
-    {
-        public int Col { get; set; }
+    (
+        int Col,
 
-        public int Row { get; set; }
-    }
+        int Row
+    );
 }
