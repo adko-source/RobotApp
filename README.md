@@ -23,13 +23,13 @@ The app moves a robot inside of a grid based on the instructions and outputs the
 ## Expected Output
 The app should output the result of each journey followed by its coordinates and direction.
 
-SUCCESS 1 0 W
-FAILURE 0 0 W
-OUT OF BOUNDS
-CRASHED 1 1
+SUCCESS 1 0 W<br>
+FAILURE 0 0 W<br>
+OUT OF BOUNDS<br>
+CRASHED 1 1<br>
 
 ## Description of outputs
-SUCCESS = The final coordinates and direction after the journey match the expected coordinates and direction
-FAILURE = The final coordinates and direction after the journey don't match the expected coordinates and direction
-OUT OF BOUNDS = The journey took the robot outside of the grid
+SUCCESS = The final coordinates and direction after the journey match the expected coordinates and direction<br>
+FAILURE = The final coordinates and direction after the journey don't match the expected coordinates and direction<br>
+OUT OF BOUNDS = The journey took the robot outside of the grid<br>
 CRASHED = The robot hit an obstacle 'O' within the grid at the displayed coordinates
