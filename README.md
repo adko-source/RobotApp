@@ -36,4 +36,4 @@ CRASHED = The robot hit an obstacle 'O' within the grid at the displayed coordin
 
 ## Running Unit Tests
 1. cd into RobotApp.Tests
-2. run `dotnet test`
+2. run `dotnet build; dotnet test`
