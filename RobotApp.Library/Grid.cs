@@ -10,7 +10,7 @@ namespace RobotApp.Library
 
             var cols = FileParser.GetGridSize(instructions).GetLength(1);
 
-            var grid = new char[rows, cols];
+            var grid = new char[cols, rows];
 
             var parsedObstacles = new List<int[]>();
 

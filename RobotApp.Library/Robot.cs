@@ -125,8 +125,8 @@ namespace RobotApp.Library
 
             var newPosition = CurrentPosition with
             {
+                Col = CurrentPosition.Col + colOffset,
                 Row = CurrentPosition.Row + rowOffset,
-                Col = CurrentPosition.Col + colOffset
             };
 
             CurrentPosition = newPosition;
@@ -134,9 +134,9 @@ namespace RobotApp.Library
 
         public bool IsOutOfBounds(char[,] grid)
         {
-            var maxRows = grid.GetLength(0) - 1;
+            var maxRows = grid.GetLength(1);
 
-            var maxCols = grid.GetLength(1) - 1;
+            var maxCols = grid.GetLength(0);
 
             return (CurrentPosition.Row > maxRows) || (CurrentPosition.Row < 0) || (CurrentPosition.Col >= maxCols) || (CurrentPosition.Col < 0);
         }
