@@ -8,9 +8,11 @@ namespace RobotApp.Tests
         [Fact]
         public void MoveRobot_North_IncrementsRow()
         {
-            var robot = new Robot();
-            robot.CurrentPosition = new Position(1, 1);
-            robot.CurrentDirection = Direction.N;
+            var robot = new Robot
+            {
+                CurrentPosition = new Position(1, 1),
+                CurrentDirection = Direction.N
+            };
 
             robot.Move();
 
@@ -22,8 +24,10 @@ namespace RobotApp.Tests
         [Fact]
         public void TurnRobot_Right_FromNorth_UpdatesDirection()
         {
-            var robot = new Robot();
-            robot.CurrentDirection = Direction.N;
+            var robot = new Robot
+            {
+                CurrentDirection = Direction.N
+            };
 
             robot.Turn('R');
 
@@ -38,7 +42,7 @@ namespace RobotApp.Tests
             var robot = new Robot();
 
             // Act
-            robot.Start(grid);
+            robot.RunCommands(grid);
 
             // Assert
             //Assert.Contains("OUT OF BOUNDS", result);

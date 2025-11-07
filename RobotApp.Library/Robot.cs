@@ -37,13 +37,13 @@ namespace RobotApp.Library
 
                 ExpectedEndDirection = journey.GetEndDirection();
 
-                Start(grid);
+                RunCommands(grid);
             };
 
             return commands;
         }
 
-        public void Start(char[,] grid)
+        public void RunCommands(char[,] grid)
         {
             CurrentPosition = StartPosition;
 
