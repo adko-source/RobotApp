@@ -29,7 +29,7 @@ namespace RobotApp.Tests
                 CurrentDirection = Direction.N
             };
 
-            robot.Turn('R');
+            robot.Turn(Command.R);
 
             Assert.Equal(Direction.E, robot.CurrentDirection);
         }

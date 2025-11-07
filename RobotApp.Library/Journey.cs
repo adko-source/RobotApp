@@ -61,9 +61,18 @@ namespace RobotApp.Library
             };
         }
 
-        public List<char> GetCommands()
+        public List<Command> GetCommands()
         {
-            return Commands.ToCharArray().ToList();
+            return Commands
+                .ToCharArray()
+                .Select(c => c switch
+                {
+                    'L' => Command.L,
+                    'R' => Command.R,
+                    'F' => Command.F,
+                    _ => throw new InvalidOperationException($"Unknown command: {c}")
+                })
+                .ToList();
         }
     }
 }

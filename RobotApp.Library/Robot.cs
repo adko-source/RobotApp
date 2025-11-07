@@ -12,7 +12,7 @@ namespace RobotApp.Library
 
         public Direction CurrentDirection { get; set; }
         
-        public List<char> Commands { get; set; } = new List<char>();
+        public List<Command> Commands { get; set; } = new List<Command>();
 
         public Position ExpectedEndPosition = new(0, 0);
 
@@ -51,11 +51,11 @@ namespace RobotApp.Library
 
             foreach (var command in Commands)
             {
-                if (command == 'L' || command == 'R')
+                if (command == Command.L || command == Command.R)
                 {
                     Turn(command);
                 }
-                else if (command == 'F')
+                else if (command == Command.F)
                 {
                     Move();
 
@@ -81,9 +81,9 @@ namespace RobotApp.Library
             Console.WriteLine($"{status} {journeyResult}");
         }
 
-        public void Turn(char command)
+        public void Turn(Command command)
         {
-            if (command == 'R')
+            if (command == Command.R)
             {
                 CurrentDirection = CurrentDirection switch
                 {
@@ -94,7 +94,7 @@ namespace RobotApp.Library
                     _ => CurrentDirection
                 };
             }
-            else if (command == 'L')
+            else if (command == Command.L)
             {
                 CurrentDirection = CurrentDirection switch
                 {
