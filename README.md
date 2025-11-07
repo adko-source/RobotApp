@@ -17,7 +17,7 @@ The app moves a robot inside of a grid based on the instructions and outputs the
 
 ## How to Run
 1. Create an instructions file (`.txt`). You can use any of the provided `Sample.txt` files as a template.  
-2. Open a terminal and run:
+2. Open a terminal and cd into 'RobotApp' and then run:
 `dotnet build`
 `dotnet run "C:\path\to\your\instructions.txt"`
 
